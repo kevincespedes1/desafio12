@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .flex {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .button-container {
+            margin-bottom: 20px;
+        }
+
+        .button-container button {
+            background-color: #007bff;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .button-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .product {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+
+        .product ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .product h2 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .product li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="flex">
+        <h1>Bienvenido {{ user.first_name }} {{ user.last_name }}!</h1>
+        <div class="button-container">
+            <form id="realtime-products-form" action="/realtimeproducts" method="get">
+                <button>Ver productos en tiempo real</button>
+            </form>
+        </div>
+        <h1>Lista de productos:</h1>
+    </div>
+
+    {{#each exactLimitProducts}}
+    <div class="product">
+        <ul>
+            <li>Código: {{this.code}}</li>
+            <h2>{{this.title}}</h2>
+            <li><img src="{{this.thumbnail}}" alt="{{this.title}}" style="width: 100px;"></li>
+            <li>Descripción: {{this.description}}</li>
+            <li>Categoría: {{this.category}}</li>
+            <li>Stock: {{this.stock}}</li>
+            <li>Precio: $ {{this.price}}</li>
+        </ul>
+    </div>
+    {{/each}}
+
+</body>
+
+</html>
+
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    const realtimeProductsForm = document.getElementById('realtime-products-form');
+
+realtimeProductsForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    fetch('/api/sessions/current')
+        .then(response => response.json())
+        .then(data => {
+            if (data.user) {
+                window.location.href = '/realtimeproducts';
+            } else {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Acceso denegado',
+                    text: 'Debe iniciar sesión o registrarse para ver esta página',
+                    showCancelButton: true,
+                    confirmButtonText: 'Registrarme',
+                    cancelButtonText: 'Iniciar Sesión',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = '/register'; 
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        window.location.href = '/login'; 
+                    }
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Error al verificar la autenticación del usuario:', error);
+        });
+});
+
+
+</script>

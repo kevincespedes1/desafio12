@@ -1,0 +1,202 @@
+[
+    {
+        "title": "Smartphone XYZ",
+        "category": "Electronics",
+        "description": "Potente smartphone con pantalla HD.",
+        "price": 12000,
+        "thumbnail": "imagen1.jpg",
+        "code": "ABC123",
+        "stock": 50,
+        "status": true
+    },
+    {
+        "title": "Zapatos Deportivos",
+        "category": "Fashion",
+        "description": "Zapatos deportivos cómodos y elegantes.",
+        "price": 2500,
+        "thumbnail": "imagen2.jpg",
+        "code": "ABC124",
+        "stock": 30,
+        "status": true
+    },
+    {
+        "title": "Portátil Ultradelgado",
+        "category": "Electronics",
+        "description": "Portátil ultradelgado con gran rendimiento.",
+        "price": 18000,
+        "thumbnail": "imagen3.jpg",
+        "code": "ABC125",
+        "stock": 20,
+        "status": true
+    },
+    {
+        "title": "Bicicleta Todo Terreno",
+        "category": "Sports",
+        "description": "Bicicleta robusta para aventuras extremas.",
+        "price": 8000,
+        "thumbnail": "imagen4.jpg",
+        "code": "ABC126",
+        "stock": 15,
+        "status": true
+    },
+    {
+        "title": "Reloj Inteligente",
+        "category": "Electronics",
+        "description": "Reloj inteligente con seguimiento de actividad.",
+        "price": 5000,
+        "thumbnail": "imagen5.jpg",
+        "code": "ABC127",
+        "stock": 35,
+        "status": true
+    },
+    {
+        "title": "Camiseta Casual",
+        "category": "Fashion",
+        "description": "Camiseta casual de algodón suave.",
+        "price": 1500,
+        "thumbnail": "imagen6.jpg",
+        "code": "ABC128",
+        "stock": 40,
+        "status": true
+    },
+    {
+        "title": "Auriculares Inalámbricos",
+        "category": "Electronics",
+        "description": "Auriculares inalámbricos con cancelación de ruido.",
+        "price": 3000,
+        "thumbnail": "imagen7.jpg",
+        "code": "ABC129",
+        "stock": 25,
+        "status": true
+    },
+    {
+        "title": "Tabla de Surf",
+        "category": "Sports",
+        "description": "Tabla de surf resistente y ligera.",
+        "price": 12000,
+        "thumbnail": "imagen8.jpg",
+        "code": "ABC130",
+        "stock": 10,
+        "status": true
+    },
+    {
+        "title": "Cámara Digital",
+        "category": "Electronics",
+        "description": "Cámara digital de alta resolución.",
+        "price": 15000,
+        "thumbnail": "imagen9.jpg",
+        "code": "ABC131",
+        "stock": 5,
+        "status": true
+    },
+    {
+        "title": "Bufanda de Lana",
+        "category": "Fashion",
+        "description": "Bufanda suave y abrigada de lana.",
+        "price": 1000,
+        "thumbnail": "imagen10.jpg",
+        "code": "ABC132",
+        "stock": 60,
+        "status": true
+    },
+    {
+        "title": "Raqueta de Tenis",
+        "category": "Sports",
+        "description": "Raqueta de tenis profesional.",
+        "price": 3500,
+        "thumbnail": "imagen11.jpg",
+        "code": "ABC133",
+        "stock": 20,
+        "status": true
+    },
+    {
+        "title": "Teclado Gaming",
+        "category": "Electronics",
+        "description": "Teclado gaming con retroiluminación RGB.",
+        "price": 7000,
+        "thumbnail": "imagen12.jpg",
+        "code": "ABC134",
+        "stock": 18,
+        "status": true
+    },
+    {
+        "title": "Bolso de Cuero",
+        "category": "Fashion",
+        "description": "Bolso de cuero elegante y duradero.",
+        "price": 6000,
+        "thumbnail": "imagen13.jpg",
+        "code": "ABC135",
+        "stock": 25,
+        "status": true
+    },
+    {
+        "title": "Botella de Agua Deportiva",
+        "category": "Sports",
+        "description": "Botella de agua deportiva resistente.",
+        "price": 1000,
+        "thumbnail": "imagen14.jpg",
+        "code": "ABC136",
+        "stock": 45,
+        "status": true
+    },
+    {
+        "title": "Tablet Android",
+        "category": "Electronics",
+        "description": "Tablet Android con pantalla de alta definición.",
+        "price": 9000,
+        "thumbnail": "imagen15.jpg",
+        "code": "ABC137",
+        "stock": 30,
+        "status": true
+    },
+    {
+        "title": "Pantalones Vaqueros",
+        "category": "Fashion",
+        "description": "Pantalones vaqueros cómodos y modernos.",
+        "price": 3500,
+        "thumbnail": "imagen16.jpg",
+        "code": "ABC138",
+        "stock": 20,
+        "status": true
+    },
+    {
+        "title": "Balón de Fútbol",
+        "category": "Sports",
+        "description": "Balón de fútbol oficial de alta calidad.",
+        "price": 2000,
+        "thumbnail": "imagen17.jpg",
+        "code": "ABC139",
+        "stock": 40,
+        "status": true
+    },
+    {
+        "title": "Altavoz Bluetooth",
+        "category": "Electronics",
+        "description": "Altavoz Bluetooth portátil con excelente sonido.",
+        "price": 4000,
+        "thumbnail": "imagen18.jpg",
+        "code": "ABC140",
+        "stock": 22,
+        "status": true
+    },
+    {
+        "title": "Gorra de Béisbol",
+        "category": "Fashion",
+        "description": "Gorra de béisbol clásica y ajustable.",
+        "price": 1200,
+        "thumbnail": "imagen19.jpg",
+        "code": "ABC141",
+        "stock": 35,
+        "status": true
+    },
+    {
+        "title": "Cuerda de Saltar",
+        "category": "Sports",
+        "description": "Cuerda de saltar para entrenamientos cardio.",
+        "price": 1500,
+        "thumbnail": "imagen20.jpg",
+        "code": "ABC142",
+        "stock": 50,
+        "status": true
+    }
+]

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Usuarios</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1500px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            flex-direction: row;
+        }
+
+        .user-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 10px;
+            width: 300px;
+        }
+
+        .user-card h2 {
+            margin-bottom: 10px;
+        }
+
+        .user-card p {
+            margin: 5px 0;
+        }
+
+        .user-card button {
+            background-color: #007bff;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .user-card button:hover {
+            background-color: #0056b3;
+        }
+
+        .title {
+            text-align: center;
+        }
+
+        .pagination {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+        }
+
+        .pagination li {
+            margin: 0 5px;
+        }
+
+        .pagination li a {
+            text-decoration: none;
+            padding: 5px 10px;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+            color: #007bff;
+        }
+
+        .pagination li a:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="/" class="navbar-logo">Mi Tienda Online</a>
+            <ul class="navbar-menu">
+                <li class="navbar-item">
+                    <a href="/" class="navbar-link">Inicio</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="/realtimeproducts" class="navbar-link">Productos en tiempo real</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="/profile" class="navbar-link">Mi Perfil</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="/cart" class="navbar-link">Carrito</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <h1 class="title">{{title}}</h1>
+
+    <div class="container">
+        {{#each data.docs}}
+        <div class="user-card">
+            <h2>{{this.last_name}}, {{this.first_name}}</h2>
+            <p>Email: {{this.email}}</p>
+            <p>Edad: {{this.age}}</p>
+            <p>Género: {{this.gender}}</p>
+            <p>Rol: {{this.rol}}</p>
+            <button>Opciones</button>
+        </div>
+        {{/each}}
+    </div>
+
+    <nav aria-label="Paginación">
+        <ul class="pagination">
+            {{#if data.hasPrevPage}}
+            <li class="page-item"><a class="page-link" href="/users?page={{data.prevPage}}">Ant</a></li>
+            {{/if}}
+            {{#if data.hasNextPage}}
+            <li class="page-item"><a class="page-link" href="/users?page={{data.nextPage}}">Sig</a></li>
+            {{/if}}
+        </ul>
+    </nav>
+</body>
+
+</html>

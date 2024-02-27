@@ -1,0 +1,231 @@
+<div class="flex ">
+
+    <nav class="navbar">
+        <button id="report-button" class="report-button-icon report-button ">⚠️</button>
+        <div class="navbar-container">
+            <a href="/" class="navbar-logo">Mi Tienda Online</a>
+            <ul class="navbar-menu">
+                <li class="navbar-item">
+                    <a href="/" class="navbar-link">Inicio</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="/realtimeproducts" class="navbar-link">Productos en tiempo real</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="/profile" class="navbar-link">Mi Perfil</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="/cart" class="navbar-link">Carrito</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="pagination-buttons">
+        {{#if hasPrevPage}}
+        <a href="/realTimeProducts?page={{prevPage}}" class="pagination-button pagination-button-prev">Anterior</a>
+        {{/if}}
+        <p class="pagination-page">Página: {{page}}</p>
+        {{#if hasNextPage}}
+        <a href="/realTimeProducts?page={{nextPage}}" class="pagination-button pagination-button-next">Siguiente</a>
+        {{/if}}
+    </div>
+
+    <div class="modal" id="report-modal">
+        <div class="modal-content">
+            <span class="close" id="close-report-modal">&times;</span>
+            <div class="report-section">
+                <p>¡Hola, {{user.last_name}}!</p>
+                <p>Solo los usuarios con roles 'Premium' y 'Usuario' pueden hacer uso del carrito de compras.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container ">
+        <div class="products-container">
+            {{#each products}}
+            <div class="product product-card">
+                <strong>creador: {{this.owner}}</strong>
+                <hr>
+                <div class="product-image">
+                    <img style="width: 250px" src="{{this.thumbnail}}" alt="{{this.thumbnail}}">
+                </div>
+                <hr>
+                <div class="product-details">
+                    <p>Id Del Producto: {{this._id}}</p>
+                    <h2>{{this.title}}</h2>
+                    <p>Descripcion: {{this.description}}</p>
+                    <p>Categoria: {{this.category}}</p>
+                    <p>Stock: {{this.stock}}</p>
+                    <p>Precio: $ {{this.price}}</p>
+                    <input type="hidden" id="userRole" value="{{userRole}}">
+                    <button class="addToCartButton button-realtimeproducts add-to-cart-button"
+                        data-product-id="{{this.id}}">Agregar al
+                        carrito</button>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+
+    <div class="toggle-button-add" id="toggle-button-add">
+        <button class="button-add" id="add-but">&#9654;</button>
+    </div>
+
+    <div class="database-tools-panel" id="add-container">
+        <div class="forms" id="add-product-form">
+            <div class="container-addProduct-realtimeproducts">
+                <h2>Agregar producto</h2>
+                <form action="/realtimeproducts" method="post" id="addProduct">
+                    <label for="title">Nombre:</label>
+                    <input type="text" id="title" required>
+                    <label for="description">Descripción:</label>
+                    <input type="text" id="description" required>
+                    <label for="code">Código:</label>
+                    <input type="text" id="code" required>
+                    <label for="price">Precio:</label>
+                    <input type="number" id="price" required>
+                    <label for="stock">Stock:</label>
+                    <input type="number" id="stock" required>
+                    <label for="category">Categoria:</label>
+                    <input type="text" id="category" required>
+                    <label for="thumbnail">Imagen (URL):</label>
+                    <input type="text" id="thumbnail">
+                    <input type="hidden" id="role" value="{{user.rol}}">
+                    <input type="hidden" id="email" value="{{user.email}}">
+                    <button class="button-realtimeproducts" type="submit" id="addProductButton">Agregar</button>
+                </form>
+            </div>
+        </div>
+        <button class="close-add-button" id="close-add-button">&#x2716;</button>
+    </div>
+
+
+    <div class="toggle-button-del" id="toggle-button-delete">
+        <button class="button-del" id="delete-but"> &#9654; </button>
+    </div>
+
+    <div class="database-tools-panel" id="delete-container">
+        <div class="forms" id="delete-product-form">
+            <h2>Eliminar producto</h2>
+            <form id="deleteProduct">
+                <label for="id">ID del producto:</label>
+                <input type="text" id="id">
+                <input type="hidden" id="email" value="{{user.email}}">
+                <input type="hidden" id="roles" value="{{user.rol}}">
+                <button class="button-realtimeproducts" type="button" id="deleteProductButton">Borrar</button>
+            </form>
+        </div>
+        <button class="close-delete-button" id="close-delete-button">&#x2716;</button>
+    </div>
+
+    <div class="pagination-buttons">
+        {{#if hasPrevPage}}
+        <a href="/realTimeProducts?page={{prevPage}}" class="pagination-button pagination-button-prev">Anterior</a>
+        {{/if}}
+        <p class="pagination-page">Página: {{page}}</p>
+        {{#if hasNextPage}}
+        <a href="/realTimeProducts?page={{nextPage}}" class="pagination-button pagination-button-next">Siguiente</a>
+        {{/if}}
+    </div>
+
+    <div class="chat-tab" id="chat-tab">
+        <button class="chat-tab-button" id="chat-tab-button">&#x1F4AC;</button>
+    </div>
+    <div class="container-chat-realtimeproducts" id="chat-container">
+        <h2>Chat!!</h2>
+        <div class="chat-realtimeproducts" id="chat">
+        </div>
+        <div>
+            <form id="chatForm" class="flex">
+                <input type="hidden" id="user" value="{{user.email}}">
+                <input type="hidden" id="rol" value="{{user.rol}}">
+                <label for="message">Mensaje</label>
+                <input type="text" id="message" name="message">
+                <button class="button-realtimeproducts" type="submit" id="chat-button">Enviar</button>
+            </form>
+        </div>
+        <button class="close-chat-button" id="close-chat-button">&#x2716;</button>
+    </div>
+
+</div>
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/realTimeProducts.js"></script>
+<script>
+
+    //chat
+    document.addEventListener('DOMContentLoaded', function () {
+        const chatTab = document.getElementById('chat-tab');
+        const chatContainer = document.getElementById('chat-container');
+        const chatTabButton = document.getElementById('chat-tab-button');
+        const closeChatButton = document.getElementById('close-chat-button');
+
+        chatTabButton.addEventListener('click', function () {
+            chatContainer.style.display = 'block';
+            chatTab.style.display = 'none';
+        });
+
+        closeChatButton.addEventListener('click', function () {
+            chatContainer.style.display = 'none';
+            chatTab.style.display = 'block';
+        });
+    });
+
+    // Mostrar modal al hacer clic en el botón de informe
+    document.getElementById('report-button').addEventListener('click', function () {
+        document.getElementById('report-modal').style.display = 'block';
+    });
+
+    // Cerrar modal al hacer clic en el botón de cierre
+    document.getElementById('close-report-modal').addEventListener('click', function () {
+        document.getElementById('report-modal').style.display = 'none';
+    });
+
+    // Cerrar modal al hacer clic fuera de él
+    window.addEventListener('click', function (event) {
+        var modal = document.getElementById('report-modal');
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+
+    //herramientas------------------------------------------
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const deleteTab = document.getElementById('toggle-button-del');
+        const deleteContainer = document.getElementById('delete-container');
+        const deleteTabButton = document.getElementById('delete-but');
+        const closeDeleteButton = document.getElementById('close-delete-button');
+
+        deleteTabButton.addEventListener('click', function () {
+            deleteContainer.style.display = 'block';
+            deleteTab.style.display = 'none';
+        });
+
+        closeDeleteButton.addEventListener('click', function () {
+            deleteContainer.style.display = 'none';
+            deleteTab.style.display = 'block';
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const addTab = document.getElementById('toggle-button-addd');
+        const addContainer = document.getElementById('add-container');
+        const addTabButton = document.getElementById('add-but');
+        const closeAddButton = document.getElementById('close-add-button');
+
+        addTabButton.addEventListener('click', function () {
+            addContainer.style.display = 'block';
+            addTab.style.display = 'none';
+        });
+
+        closeAddButton.addEventListener('click', function () {
+            addContainer.style.display = 'none';
+            addTab.style.display = 'block';
+        });
+    });
+
+</script>

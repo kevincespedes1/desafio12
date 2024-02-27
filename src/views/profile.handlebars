@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Usuario</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .profile-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #666;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .user-info {
+            border-top: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+
+        .user-info p {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="/" class="navbar-logo">Mi Tienda Online</a>
+            <ul class="navbar-menu">
+                <li class="navbar-item">
+                    <a href="/" class="navbar-link">Inicio</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="/realtimeproducts" class="navbar-link">Productos en tiempo real</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="/profile" class="navbar-link">Mi Perfil</a>
+                </li>
+                <li class="navbar-item">
+                    <a href="/cart" class="navbar-link">Carrito</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <br>
+    <div class="profile-container">
+        <h1>Perfil del Usuario</h1>
+        <h2>Bienvenido, {{ user.first_name }} {{ user.last_name }}!</h2>
+        {{#if isAdmin }}
+        <h2>Eres administrador</h2>
+        <div class="button-container">
+            <form action="/users" method="get">
+                <button>Ver lista de usuarios</button>
+            </form>
+        </div>
+        {{else}}
+        <div class="button-container">
+            <form action="#" method="put">
+                <button id="rol" value={{user.rol}} onclick="toggleUserRole('{{user._id}}')">Cambiar Rol</button>
+            </form>
+        </div>
+        {{/if}}
+        <div class="user-info">
+            <h2>Tus datos son</h2>
+            <p>Nombre: {{user.first_name}}</p>
+            <p>Apellido: {{user.last_name}}</p>
+            <p>Correo: {{user.email}}</p>
+            <p>Edad: {{user.age}}</p>
+        </div>
+        <div class="button-container">
+            <form action="/logout" method="POST">
+                <button type="submit">Cerrar Sesión</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    function toggleUserRole(userId) {
+        const rol = document.getElementById('rol').value
+        console.log(rol)
+        fetch(`/api/users/premium/${userId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('No se pudo cambiar el rol del usuario');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data.message);
+            })
+            .catch(error => {
+                console.error('Error al cambiar el rol del usuario:', error);
+            });
+    }
+</script>
